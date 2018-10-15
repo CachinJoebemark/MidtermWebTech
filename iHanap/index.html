@@ -11,8 +11,25 @@
     <header>
         <h1>iHanap</h1>
     </header>
-    <main>
-    </main>
+    <div id="map"></div>
+    <br>
+    <div class="location">
+      <button onclick="myFunction()" class="dropbtn">Locations</button>
+        <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <a href="#">Ampucao</a>
+        <a href="#">Dalupirip</a>
+        <a href="#">Gumatdang</a>
+        <a href="#">Loacan</a>
+        <a href="#">Poblacion</a>
+        <a href="#">Tinongdan</a>
+        <a href="#">Tuding</a>
+        <a href="#">Ucab</a>
+        <a href="#">Virac</a>
+  </div>  
+    </div>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOdlyVniEnbA1uUUD1KEq0LICXy31zd0w&callback=initMap"
+    async defer></script>
     <script src="app.js"></script>
 </body>
 </html>
