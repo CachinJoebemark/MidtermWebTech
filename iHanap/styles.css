@@ -1,9 +1,25 @@
  #map {
-    height: 400px;
+    height: 650px;
     width: 100%;
   }
+
+.header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+.header h1 {
+  position: relative;
+  top: 18px;
+  left: 10px;
+}
+
+.black-backgrnd{
+    color:#fff!important;background-color:#000!important
+}
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #0000ff ;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -12,7 +28,7 @@
 }
 
 .dropbtn:hover, .dropbtn:focus {
-    background-color: #3e8e41;
+    background-color: #0000ff ;
 }
 
 #myInput {

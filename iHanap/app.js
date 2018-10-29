@@ -29,17 +29,69 @@ function filterFunction() {
 }
 
 //Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-  .then(function(registration) {
-    console.log('Registration successful, scope is:', registration.scope);
-  })
-  .catch(function(error) {
-    console.log('Service worker registration failed, error:', error);
-  });
+if (window.indexedDB) {
+    var request = indexedDB.open("mapsDB", 1);
+    
+    request.onerror = function(e){
+        console.log(e);
+    }
+    
+    request.onsuccess = function(e) {
+        console.log("success");
+    }
 }
-navigator.serviceWorker.register('/service-worker.js', {
-  scope: '/app/'
+
+
+//Trial marker
+ var map;
+  var markersArray=[];
+   function initialize() {
+    var mapOptions = {
+        zoom: 8,
+        center: new google.maps.LatLng(11.6667,76.2667),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+  mapOptions);
+ }
+
+google.maps.event.addDomListener(window, 'load', initialize);
+function pan() {
+deleteOverlays();
+    var panPoint = new google.maps.LatLng(document.getElementById("lat").value,     document.getElementById("lng").value);
+    map.setCenter(panPoint)
+    var marker = new google.maps.Marker({
+            map: map,
+            position: panPoint,
+        });
+        markersArray.push(marker);
+
+ }
+
+ function deleteOverlays() {
+   if (markersArray) {
+      for (i in markersArray) {
+       markersArray[i].setMap(null);
+      }
+    markersArray.length = 0;
+  }
+ }
+
+//Caching
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(cacheName).then(function(cache) {
+      return cache.addAll(
+        [
+          '/css/bootstrap.css',
+          '/css/main.css',
+          '/js/bootstrap.min.js',
+          '/js/jquery.min.js',
+          '/offline.html'
+        ]
+      );
+    })
+  );
 });
 
 /*

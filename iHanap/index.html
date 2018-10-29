@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie-edge">
         <title>iHanap</title>
         <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>iHanap</h1>
-    </header>
+        <div class=header>
+            <img src="logoihanap.png" id="logo">
+            <h1>iHanap</h1>
+            <link rel="shortcut icon" href="logoihanap.png">
+        </div>
+</header>
+<body class="black-backgrnd">
     <div id="map"></div>
     <br>
     <div class="location">
@@ -28,8 +30,41 @@
         <a href="#">Virac</a>
   </div>  
     </div>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOdlyVniEnbA1uUUD1KEq0LICXy31zd0w&callback=initMap"
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPYqGWAoY7h2-Dl472O93s_JSGISF8pNY&callback=initMap"
     async defer></script>
     <script src="app.js"></script>
+    <script type="text/javascript">
+        var locations = [
+      ['Poblacion', 16.844020, 16.844020, 4],
+      ['Loacan', 16.418470, 120.665500, 5],
+      ['Gumatdang', 16.412120, 120.632720, 3],
+      ['Dalupirip', 16.343020, 16.343020, 2],
+      ['Ampucao', 16.249630, 120.674730, 1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(-33.92, 151.25),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+    </script>
 </body>
 </html>
