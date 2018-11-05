@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<header>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <title>iHanap</title>
+        <link rel="stylesheet" href="styles.css">
+        <div class=header>
+            <img src="images/logoihanap.png" id="logo">
+            <h1>iHanap</h1>
+            <link rel="shortcut icon" href="images/logoihanap.png">
+        </div>
+</header>
+<body class="black-backgrnd">
+    <div id="map"></div>
+    <br>
+   <!-- <div class="location">
+      <button onclick="myFunction()" class="dropbtn">Locations</button>
+        <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+        <a href="#">Ampucao</a>
+        <a href="#">Dalupirip</a>
+        <a href="#">Gumatdang</a>
+        <a href="#">Loacan</a>
+        <a href="#">Poblacion</a>
+        <a href="#">Tinongdan</a>
+        <a href="#">Tuding</a>
+        <a href="#">Ucab</a>
+        <a href="#">Virac</a>
+  </div>  
+    </div> -->
+     <div id="gmap-circles"></div>
+     <div id="controls"></div>
+     <div id="gmap-menu"></div>
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPYqGWAoY7h2-Dl472O93s_JSGISF8pNY&callback=initMap"
+    async defer></script>
+    <script src="app.js"></script>
+     <script src="function.js"></script>
+    <script src="indexeddb.js"></script>
+
+  <script type="text/javascript">
+    function addOneData() {
+
+              idb.insert("Question", { title: "Q1", marks: "3", ID: 1 });
+
+
+              /*
+                  //Also support callback on success & error
+                  idb.insert("Question", { title: "Q1", marks: "2", ID: 25 }, function (isInserted, responseText) {
+                  console.log(isInserted);
+                  console.log(responseText);
+                  });
+              */
+
+          }
+
+   function addMultipleData() {
+
+              idb.insert("Question", [{ title: "Q2", marks: "3", ID: 2 }, { title: "Q3", marks: "3", ID: 3 }], function (isInserted, responseText) {
+                  console.log(isInserted);
+                  console.log(responseText);
+              });
+          }
+
+    function getMultipleData() {
+
+            var result = idb.select("Question", [2, 3], function (isSelected, responseData) {
+                if (isSelected) {
+                    console.log(responseData);
+                }
+                else {
+                    console.log("Error: " + responseText);
+                }
+            });
+
+        }
+
+  </script>
+  <script>
+    idb.init({
+            database: "locate",
+            version: 1,
+            tables: [
+                {
+                    name: "location",
+                    keyPath: "ID",
+                    autoIncrement: false,
+                    index: [{ name: "title", unique: false}]
+                },
+            ]
+        });
+    function addLocation() {
+
+            idb.insert("evactuation", [{ title: "Mandaluyong Elementary School", lat: "14.586624", lang: "121.025202", population: "1000", capacity: "1500", ID: 1 }, { title: "elementary school", lat: "14.517114", lang: "120.996393", population: "1500", capacity: "1500", ID: 2 }, { title: "Senior Citizen Building cor. Victory Ave., Tatalon", lat: "14.631966", lang: "121.021928", population: "800", capacity: "1500", ID: 3 }, { title: "Brgy. Sta Ana Covered Court", lat: "14.590473", lang: "121.072849", population: "1000", capacity: "1500", ID: 4 }], function (isInserted, responseText) {
+                console.log(isInserted);
+                console.log(responseText);
+            });
+        }
+        window.onload = addEvacuation;
+  </script>
+</body>
+</html>
