@@ -1,28 +1,4 @@
-new Maplace({
-    locations: Circles,
-    map_div: '#gmap-circles',
-    start: 4,
-    view_all_text: 'Points of interest',
-    type: 'circle',
-    shared: {
-        zoom: 16,
-        html: '%index'
-    },
-    circleRadiusChanged: function(index, point, marker) {
-        $('#radiusInfo').text(
-            ' - point #' + (index+1) + ' size: ' + parseInt(marker.getRadius()) + 'mt.'
-        );
-    }
-}).Load();
 
-function initMap(){
-          // Map options
-            var options = {
-            zoom: 14,
-            center:{lat:16.4023332,lng: 120.59600709999995}
-          }
-
-	var map = new google.maps.Map(document.getElementById('map'), options);
           
     /*      var markers = [
             {

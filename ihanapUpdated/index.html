@@ -14,11 +14,7 @@
 </header>
 <body class="black-backgrnd">
     <div id="map"></div>
-    <br>
-   <!-- <div class="location">
-      <button onclick="myFunction()" class="dropbtn">Locations</button>
-        <div id="myDropdown" class="dropdown-content">
-        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+     <div id="gmap-circles">
         <a href="#">Ampucao</a>
         <a href="#">Dalupirip</a>
         <a href="#">Gumatdang</a>
@@ -27,11 +23,8 @@
         <a href="#">Tinongdan</a>
         <a href="#">Tuding</a>
         <a href="#">Ucab</a>
-        <a href="#">Virac</a>
-  </div>  
-    </div> -->
-     <div id="gmap-circles"></div>
-     <div id="controls"></div>
+        <a href="#">Virac</a></div>
+   <!--  -->
      <div id="gmap-menu"></div>
      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPYqGWAoY7h2-Dl472O93s_JSGISF8pNY&callback=initMap"
     async defer></script>
@@ -99,5 +92,7 @@
         }
         window.onload = addEvacuation;
   </script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="maplace.min.js"></script>
 </body>
 </html>
